@@ -2,9 +2,17 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { formValidation } from "../utils/validation";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const Login = () => {
   const [issignin, setIssignin] = useState(true);
+  const router = useRouter();
   //   const [fieldValues, setFieldvalues] = useState({
   //     email: "",
   //   });
@@ -26,6 +34,48 @@ const Login = () => {
     );
 
     setError(validatedData);
+    if (!validatedData) {
+      if (!issignin) {
+        createUserWithEmailAndPassword(
+          auth,
+          email?.current?.value,
+          password?.current?.value
+        )
+          .then((userCredential) => {
+            // Signed up
+            const user = userCredential.user;
+            toast.success("Account created successfully");
+            setIssignin(true);
+            email.current.value = null;
+            password.current.value = null;
+            name.current.value = null;
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            toast.error(errorMessage);
+          });
+      } else {
+        signInWithEmailAndPassword(
+          auth,
+          email?.current?.value,
+          password?.current?.value
+        )
+          .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            toast.success("Logged in successfully");
+            email.current.value = null;
+            password.current.value = null;
+            router.push("/about");
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            toast.error(errorMessage);
+          });
+      }
+    }
   };
   return (
     <div className="relative min-h-screen w-full">
