@@ -1,12 +1,12 @@
 "use client";
 import React, { useRef, useState } from "react";
 import Header from "./Header";
-import { formValidation } from "../utils/validation";
+import { formValidation } from "./utils/validation";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth } from "./utils/firebase";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
