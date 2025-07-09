@@ -20,6 +20,15 @@ const Body = () => {
             photoURL: photoURL,
           })
         );
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
         // ...
       } else {
         // User is signed out
