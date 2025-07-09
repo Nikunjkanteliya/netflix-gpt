@@ -1,18 +1,22 @@
 "use client";
 import React, { useRef, useState } from "react";
 import Header from "./Header";
-import { formValidation } from "./utils/validation";
+import { formValidation } from "../utils/validation";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
-import { auth } from "./utils/firebase";
+import { auth } from "../utils/firebase";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [issignin, setIssignin] = useState(true);
   const router = useRouter();
+  const dispatch = useDispatch();
   //   const [fieldValues, setFieldvalues] = useState({
   //     email: "",
   //   });
@@ -43,9 +47,34 @@ const Login = () => {
         )
           .then((userCredential) => {
             // Signed up
-            const user = userCredential.user;
+            const user = auth?.currentUser;
             toast.success("Account created successfully");
-            setIssignin(true);
+            // setIssignin(true);
+
+            updateProfile(auth.currentUser, {
+              displayName: name?.current?.value,
+              photoURL: "https://example.com/jane-q-user/profile.jpg",
+            })
+              .then(() => {
+                // Profile updated!
+                // ...
+                dispatch(
+                  addUser({
+                    uid: user?.uid,
+                    email: user?.email,
+                    displayName: user?.displayName,
+                    photoURL: user?.photoURL,
+                  })
+                );
+                router.push("/about");
+              })
+              .catch((error) => {
+                // An error occurred
+                // ...
+                toast.error(error);
+                // dispatch(removeUser());
+              });
+
             email.current.value = null;
             password.current.value = null;
             name.current.value = null;
@@ -72,6 +101,7 @@ const Login = () => {
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            console.log(error);
             toast.error(errorMessage);
           });
       }
