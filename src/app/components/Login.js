@@ -48,8 +48,9 @@ const Login = () => {
           .then((userCredential) => {
             // Signed up
             const user = auth?.currentUser;
-            toast.success("Account created successfully");
             // setIssignin(true);
+            router.push("/about");
+            toast.success("Account created successfully");
 
             updateProfile(auth.currentUser, {
               displayName: name?.current?.value,
@@ -66,7 +67,6 @@ const Login = () => {
                     photoURL: user?.photoURL,
                   })
                 );
-                router.push("/about");
               })
               .catch((error) => {
                 // An error occurred
