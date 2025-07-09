@@ -55,6 +55,7 @@ const Login = () => {
             updateProfile(auth.currentUser, {
               displayName: name?.current?.value,
               photoURL: "https://example.com/jane-q-user/profile.jpg",
+              
             })
               .then(() => {
                 // Profile updated!
