@@ -1,13 +1,52 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { logoutUser } from "../utils/Logout";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { onAuthStateChanged } from "firebase/auth";
+import { addUser, removeUser } from "../utils/userSlice";
+import { auth } from "../utils/firebase";
 
 const Header = () => {
   const router = useRouter();
   const userData = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        router.push("/browse");
+        // const uid = user.uid;
+        const { uid, email, displayName, photoURL } = user;
+        dispatch(
+          addUser({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+        localStorage.setItem(
+          "user",
+          JSON.stringify({
+            uid: uid,
+            email: email,
+            displayName: displayName,
+            photoURL: photoURL,
+          })
+        );
+
+        // ...
+      } else {
+        // User is signed out
+        // ...
+        dispatch(removeUser());
+        router.push("/");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <header className="mx-auto left-0 right-0 px-[48px] py-[24px] max-w-[calc(83.3333%-6rem)]  flex justify-between">
@@ -22,8 +61,8 @@ const Header = () => {
         <div className="flex gap-3 items-end">
           <div>
             <img
-              src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
-              // src={userData?.photoURL}
+              // src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
+              src={userData?.photoURL}
               alt="userimage"
               className="w-10 "
             />

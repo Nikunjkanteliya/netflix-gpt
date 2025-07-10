@@ -49,13 +49,13 @@ const Login = () => {
             // Signed up
             const user = auth?.currentUser;
             // setIssignin(true);
-            router.push("/about");
+            // router.push("/about");
             toast.success("Account created successfully");
 
             updateProfile(auth.currentUser, {
               displayName: name?.current?.value,
-              photoURL: "https://example.com/jane-q-user/profile.jpg",
-              
+              photoURL:
+                "https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg",
             })
               .then(() => {
                 // Profile updated!
@@ -97,7 +97,7 @@ const Login = () => {
             toast.success("Logged in successfully");
             email.current.value = null;
             password.current.value = null;
-            router.push("/about");
+            // router.push("/about");
           })
           .catch((error) => {
             const errorCode = error.code;
