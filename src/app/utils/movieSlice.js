@@ -17,11 +17,8 @@ const movieSlice = createSlice({
       state.videoTrailer = action.payload;
     },
     popularMoviesData: (state, action) => {
-      // state.popularMoviesData = action.payload;
       const { movies, append } = action.payload;
-      // state.popularMoviesData = append
-      //   ? [...state.popularMoviesData, ...movies]
-      //   : movies;
+
       if (append) {
         const existingIds = new Set(state.popularMoviesData.map((m) => m.id));
         const newMovies = movies.filter((m) => !existingIds.has(m.id));
@@ -31,11 +28,8 @@ const movieSlice = createSlice({
       }
     },
     topRatedMoviesData: (state, action) => {
-      // state.topRatedmoviesData = action.payload;
       const { movies, append } = action.payload;
-      // state.topRatedmoviesData = append
-      //   ? [...state.topRatedmoviesData, ...movies]
-      //   : movies;
+
       if (append) {
         const existingIds = new Set(state.topRatedmoviesData.map((m) => m.id));
         const newMovies = movies.filter((m) => !existingIds.has(m.id));

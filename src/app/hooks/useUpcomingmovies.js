@@ -19,7 +19,6 @@ const useUpcomingmovies = (page = 1) => {
             },
           }
         );
-        console.log(" use effect");
           
         dispatch(
           upcomingMovieData({

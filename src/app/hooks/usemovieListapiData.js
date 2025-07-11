@@ -13,8 +13,8 @@ const useMovieListApiData = () => {
         {
           headers: {
             accept: "application/json",
-           Authorization:
-                process.env.NEXT_PUBLIC_FIREBASE_GOOGLE_APIKEY_TMDB_AUTH_KEY,
+            Authorization:
+              process.env.NEXT_PUBLIC_FIREBASE_GOOGLE_APIKEY_TMDB_AUTH_KEY,
           },
         }
       )

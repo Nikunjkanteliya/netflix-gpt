@@ -17,9 +17,7 @@ const Login = () => {
   const [issignin, setIssignin] = useState(true);
   const router = useRouter();
   const dispatch = useDispatch();
-  //   const [fieldValues, setFieldvalues] = useState({
-  //     email: "",
-  //   });
+
 
   const [error, setError] = useState();
 
@@ -48,8 +46,7 @@ const Login = () => {
           .then((userCredential) => {
             // Signed up
             const user = auth?.currentUser;
-            // setIssignin(true);
-            // router.push("/about");
+          
             toast.success("Account created successfully");
 
             updateProfile(auth.currentUser, {
@@ -59,7 +56,7 @@ const Login = () => {
             })
               .then(() => {
                 // Profile updated!
-                // ...
+                
                 dispatch(
                   addUser({
                     uid: user?.uid,
