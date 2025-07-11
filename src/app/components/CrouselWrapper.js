@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 const CrouselWrapper = ({ title, moviedata, onEndReached }) => {
   // Custom settings with afterChange hook
   const slidesToShow = settings?.slidesToShow || 4;
-  const threshold = moviedata.length - slidesToShow;
+  const threshold = moviedata?.length - slidesToShow;
   const infiniteSettings = {
     ...settings,
     afterChange: (current) => {
