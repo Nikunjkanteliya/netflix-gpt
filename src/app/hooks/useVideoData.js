@@ -13,7 +13,7 @@ const useVideoData = (id) => {
           headers: {
             accept: "application/json",
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZTA2NWMzZDczMmEzYzJlZWQ0NTRlMTMwNDZiNDZlNSIsIm5iZiI6MTc1MjEyMTQ1NC42MTQsInN1YiI6IjY4NmY0MDZlNTE5NTg2MDZjOTU0MGQ5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZG_Hoyorqsad2ebp1MrkUWwRqP-P3ZJzHdP24_vRdCI",
+              process.env.NEXT_PUBLIC_FIREBASE_GOOGLE_APIKEY_TMDB_AUTH_KEY,
           },
         }
       )

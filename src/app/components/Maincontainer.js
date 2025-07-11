@@ -15,7 +15,7 @@ const Maincontainer = () => {
         posterPath={videoInfo?.poster_path}
         id={videoInfo?.id}
       />
-      <Secondary />
+      <Secondary moviData={movieList} />
     </div>
   );
 };
