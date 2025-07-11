@@ -14,8 +14,6 @@ const CrouselWrapper = ({ title, moviedata, onEndReached }) => {
     afterChange: (current) => {
       // const threshold = moviedata.length - 4; // Trigger 4 slides before the end
       if (current >= threshold && typeof onEndReached === "function") {
-        alert(threshold);
-
         onEndReached();
       }
     },
