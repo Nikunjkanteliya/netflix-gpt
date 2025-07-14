@@ -1,16 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GeminiAi from "../utils/GeminiAi";
 import { spinner } from "../utils/constants";
+import ReactMarkdown from "react-markdown";
 
 const AIsearchPage = () => {
   const [aiuserInput, useAiuserInput] = useState("");
-  const [geminiinputResults, usegeminiInputResults] = useState();
+  const [geminiinputResults, usegeminiInputResults] = useState("");
+  const [displayedText, setDisplayedText] = useState("");
   const [isloading, setIsloading] = useState(false);
+  const [doneTyping, setDoneTyping] = useState(false);
+
   const geminiResponse = async () => {
     useAiuserInput("");
+    setDisplayedText("");
+    setDoneTyping(false);
+
     const geminiResults = await GeminiAi(aiuserInput, setIsloading);
-    usegeminiInputResults(geminiResults); // ✅ show on screen
+    usegeminiInputResults(geminiResults);
   };
+
+  useEffect(() => {
+    if (!geminiinputResults) return;
+
+    let index = 0;
+    setDisplayedText("");
+    setDoneTyping(false);
+
+    const interval = setInterval(() => {
+      setDisplayedText((prev) => prev + geminiinputResults.charAt(index));
+      index++;
+      if (index >= geminiinputResults.length) {
+        clearInterval(interval);
+        setDoneTyping(true);
+      }
+    }, 20); // Typing speed
+
+    return () => clearInterval(interval);
+  }, [geminiinputResults]);
+
   return (
     <div>
       <div className="max-w-[calc(83.3333%-6rem)] mx-auto">
@@ -22,10 +49,17 @@ const AIsearchPage = () => {
 
           <div className="col-start-3 col-end-11">
             {geminiinputResults && (
-              <div className="bg-gray-800 text-white p-6 rounded-xl shadow-md   max-h-[400px] overflow-y-auto scrollbar-custom  whitespace-break-spaces">
-                <p className=" leading-relaxed text-sm sm:text-base scrollbar-thin scrollbar-thumb-neutral-500 scrollbar-track-transparent rounded-md">
-                  {geminiinputResults}
-                </p>
+              <div className="bg-gray-800 text-white p-6 rounded-xl shadow-md max-h-[400px] overflow-y-auto scrollbar-custom  whitespace-pre-wrap">
+                {!doneTyping ? (
+                  <p className="leading-relaxed text-sm sm:text-base">
+                    {displayedText}
+                    <span className="animate-pulse">|</span>
+                  </p>
+                ) : (
+                  <div className="prose prose-invert max-w-none text-sm sm:text-base">
+                    <ReactMarkdown>{geminiinputResults}</ReactMarkdown>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -34,7 +68,7 @@ const AIsearchPage = () => {
         {/* Input */}
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="grid grid-cols-12 p-4 gap-2 -mt-2" // 👈 fixes black gap
+          className="grid grid-cols-12 p-4 gap-2 -mt-2"
         >
           <input
             type="text"
