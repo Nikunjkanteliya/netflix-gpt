@@ -13,7 +13,8 @@ export const settings = {
 };
 export const spinner = (
   <svg
-    className="animate-spin h-12 w-12 ml-3 text-white"
+    className="animate-spin h-12 w-12 ml-3
+     text-white"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
@@ -30,6 +31,22 @@ export const spinner = (
       className="opacity-60"
       fill="currentColor"
       d="M4 12a8 8 0 018-8v8H4z"
+    />
+  </svg>
+);
+
+export const selectArrow = (
+  <svg
+    className="w-4 h-4"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M19 9l-7 7-7-7"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

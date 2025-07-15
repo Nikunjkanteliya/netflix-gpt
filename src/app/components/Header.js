@@ -7,12 +7,18 @@ import { toast } from "react-toastify";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 import { auth } from "../utils/firebase";
-import { toggleAibutton } from "../utils/geminiSlice";
+import {
+  selectedTextLang,
+  selectLang,
+  toggleAibutton,
+} from "../utils/geminiSlice";
+import { selectArrow } from "../utils/constants";
 
 const Header = () => {
   const router = useRouter();
   const userData = useSelector((state) => state.user);
   const aiToggle = useSelector((store) => store.geminiAI.initalState);
+  const selectedlang = useSelector((store) => store.geminiAI.selectedLang);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -62,6 +68,31 @@ const Header = () => {
       <div></div>
       {userData && (
         <div className="flex gap-3 items-end">
+          {aiToggle && (
+            <div className="relative">
+              <select
+                className="appearance-none w-full bg-black text-white border border-gray-300  py-2 px-4 pr-10 rounded leading-tight focus:outline-none  text-[18px]"
+                onChange={(e) => {
+                  dispatch(
+                    selectedTextLang(
+                      e.target.options[e.target.selectedIndex].text
+                    )
+                  );
+
+                  dispatch(selectLang(e.target.value));
+                }}
+                value={selectedlang}
+              >
+                <option value={"en"}>English</option>
+                <option value={"hi"}>Hindi</option>
+                <option value={"mr"}>Marathi</option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                {selectArrow}
+              </div>
+            </div>
+          )}
+
           <button
             className="px-4 py-2 border border-white rounded-lg"
             onClick={() => dispatch(toggleAibutton())}
