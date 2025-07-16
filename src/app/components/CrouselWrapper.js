@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Cards from "./Cards";
 import Slider from "react-slick";
 import { settings } from "../utils/constants";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import useModalvideos from "../hooks/useModalvideos";
 
 const CrouselWrapper = ({ title, moviedata, onEndReached }) => {
   // Custom settings with afterChange hook
@@ -18,14 +19,18 @@ const CrouselWrapper = ({ title, moviedata, onEndReached }) => {
       }
     },
   };
-
   return (
     <div className="mb-10">
       <p className="px-4 pt-1 text-4xl">{title}</p>
       <div className="slider-container px-4">
         <Slider {...infiniteSettings}>
           {moviedata?.map((movieData) => (
-            <Cards key={movieData?.id} posterPath={movieData?.poster_path} />
+            <Cards
+              ids={movieData?.id}
+              posterPath={movieData?.poster_path}
+              movieDesc={movieData?.overview}
+              title={movieData?.title}
+            />
           ))}
         </Slider>
       </div>

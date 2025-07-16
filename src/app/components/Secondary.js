@@ -4,8 +4,7 @@ import CrouselWrapper from "./CrouselWrapper";
 import useUpcomingMovies from "../hooks/useUpcomingmovies";
 import usePopularMovie from "../hooks/usePopularMovie";
 import useTopRatedmovies from "../hooks/useTopRatedmovies";
-
-
+import useModalvideos from "../hooks/useModalvideos";
 
 const Secondary = ({ moviData }) => {
   const [upcomingPage, setUpcomingPage] = useState(1);
