@@ -58,8 +58,8 @@ const Header = () => {
 
   // dispatch on click and useSelector for the same values
   return (
-    <header className="mx-auto left-0 right-0 px-[48px] py-[24px] max-w-[calc(83.3333%-6rem)]  flex justify-between">
-      <div className="w-36">
+    <header className="mx-auto left-0 right-0 px-[48px] py-[24px] max-w-[calc(83.3333%-6rem)]  flex justify-between items-center max-xl:max-w-[100%]  max-md:py-[10px] max-md:px-[10px]">
+      <div className="w-36 max-md:w-24">
         <img
           src="https://help.nflxext.com/helpcenter/OneTrust/oneTrust_production_2025-07-01/consent/87b6a5c0-0104-4e96-a291-092c11350111/01938dc4-59b3-7bbc-b635-c4131030e85f/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
           alt="netflixlogo"
@@ -67,11 +67,11 @@ const Header = () => {
       </div>
       <div></div>
       {userData && (
-        <div className="flex gap-3 items-end">
+        <div className="flex gap-3 items-end max-md:w-full max-md:justify-end max-md:items-center">
           {aiToggle && (
             <div className="relative">
               <select
-                className="appearance-none w-full bg-black text-white border border-gray-300  py-2 px-4 pr-10 rounded leading-tight focus:outline-none  text-[18px]"
+                className="appearance-none w-full bg-black text-white border border-gray-300  py-2 px-4 pr-10 rounded leading-tight focus:outline-none  text-[18px] max-sm:text-[14px]"
                 onChange={(e) => {
                   dispatch(
                     selectedTextLang(
@@ -94,7 +94,7 @@ const Header = () => {
           )}
 
           <button
-            className="px-4 py-2 border border-white rounded-lg"
+            className="px-4 py-2 border border-white rounded-lg max-md:px-2 max-md:py-2 max-md:text-[14px]"
             onClick={() => dispatch(toggleAibutton())}
           >
             {!aiToggle ? "Ask AI 🔎" : "Movies"}
@@ -105,11 +105,14 @@ const Header = () => {
               // src="https://wallpapers.com/images/hd/netflix-profile-pictures-1000-x-1000-qo9h82134t9nv0j0.jpg"
               src={userData?.photoURL}
               alt="userimage"
-              className="w-10 "
+              className="w-10 max-md:w-5 "
             />
           </div>
 
-          <p className="text-2xl text-white" onClick={() => logoutUser(router)}>
+          <p
+            className="text-2xl text-white max-md:text-lg"
+            onClick={() => logoutUser(router)}
+          >
             Logout!
           </p>
         </div>

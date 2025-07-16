@@ -83,3 +83,20 @@ body {
   border-radius: 18px;
   border: 1px solid #cfcece;
 }
+
+@media (max-width: 1200px) {
+  .popup-content {
+    width: 70% !important;
+  }
+}
+@media (max-width: 1024px) {
+  .popup-content {
+    width: 85% !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .popup-content {
+    width: 95% !important;
+  }
+}
