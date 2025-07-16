@@ -16,18 +16,18 @@ const Videocontainer = ({ title, overview, posterPath, id }) => {
 
   return (
     <div>
-      <div className="relative w-screen ">
-        {
+      <div className="relative w-screen max-md:aspect-[9/16] aspect-video">
+        {ytKey && (
           <iframe
-            className="w-screen aspect-video "
+            className="w-full h-full max-md:aspect-[9/16] aspect-video"
             src={`https://www.youtube.com/embed/${ytKey}?autoplay=1&mute=1`}
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
           ></iframe>
-        }
+        )}
       </div>
-      <div className="w-screen aspect-video absolute top-28 pl-32 pt-56 bg-black/40 pointer-events-none max-sm:hidden max-xl:pl-[10%] max-xl:pt-[20%] max-lg:pl-[5%] max-lg:pt-[5%]">
+      <div className="w-screen aspect-video absolute top-28 pl-32 pt-56 bg-black/40 pointer-events-none max-md:hidden max-xl:pl-[10%] max-xl:pt-[20%] max-lg:pl-[5%] max-lg:pt-[5%]">
         <h1 className="text-6xl font-bold max-xl:text-4xl">{title}</h1>
         <p className="w-1/3 text-lg pl-2 max-xl:text-sm max-xl:w-1/2">
           {" "}

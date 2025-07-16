@@ -83,6 +83,21 @@ body {
   border-radius: 18px;
   border: 1px solid #cfcece;
 }
+.slick-prev::before,
+.slick-next::before {
+  display: none;
+}
+
+.slick-prev {
+  left: 25px !important;
+  z-index: 99;
+  width: 25px ;
+}
+.slick-next {
+  right: 25px !important;
+  z-index: 99;
+  width: 25px;
+}
 
 @media (max-width: 1200px) {
   .popup-content {
