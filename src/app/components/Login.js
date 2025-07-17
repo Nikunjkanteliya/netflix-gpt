@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
+import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import Header from "./Header";
 import { formValidation } from "../utils/validation";
 import {
@@ -15,11 +16,10 @@ import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [issignin, setIssignin] = useState(true);
-  // const [issignin, setIssignin] = useState(true);
+  const [isShowpassword, setIsShowpassword] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
-
 
   const [error, setError] = useState();
 
@@ -48,7 +48,7 @@ const Login = () => {
           .then((userCredential) => {
             // Signed up
             const user = auth?.currentUser;
-          
+
             toast.success("Account created successfully");
 
             updateProfile(auth.currentUser, {
@@ -58,7 +58,7 @@ const Login = () => {
             })
               .then(() => {
                 // Profile updated!
-                
+
                 dispatch(
                   addUser({
                     uid: user?.uid,
@@ -107,6 +107,7 @@ const Login = () => {
       }
     }
   };
+
   return (
     <div className="relative min-h-screen w-full">
       <div className="absolute inset-0 bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/05e91faa-6f6d-4325-934e-5418dcc2567b/web/IN-en-20250630-TRIFECTA-perspective_159086b1-425f-435b-bcd5-1ed8039cdef9_medium.jpg')] bg-cover bg-center opacity-50 -z-10"></div>
@@ -114,6 +115,7 @@ const Login = () => {
       <div className="mx-auto max-w-[480px] text-white bg-black/70  px-16 py-12  rounded-md">
         <h1 className="text-3xl">{issignin ? "Sign In" : "Sign Up"}</h1>
         <form
+          className="relative"
           onSubmit={(e) => {
             e.preventDefault();
           }}
@@ -148,13 +150,24 @@ const Login = () => {
           <>
             <input
               ref={password}
-              type="password"
+              type={isShowpassword ? "password" : "text"}
               placeholder="password"
-              className="w-full mt-4 px-4 py-3 rounded-md border-[1px]"
+              className="w-full mt-4 px-4 py-3 rounded-md border-[1px] "
             />
             <p className="text-red-700 font-bold text-[12px] p-1">
               {error?.passwordError}
             </p>
+
+            <div
+              className="absolute top-[105px] right-[20px] "
+              onClick={() => setIsShowpassword(!isShowpassword)}
+            >
+              {isShowpassword ? (
+                <FaRegEye className="w-[25px]" />
+              ) : (
+                <FaEyeSlash className="w-[25px]" />
+              )}
+            </div>
           </>
           <button
             onClick={handleSigninValidation}
