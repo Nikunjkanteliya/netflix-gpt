@@ -115,7 +115,6 @@ const Login = () => {
       <div className="mx-auto max-w-[480px] text-white bg-black/70  px-16 py-12  rounded-md">
         <h1 className="text-3xl">{issignin ? "Sign In" : "Sign Up"}</h1>
         <form
-          className="relative"
           onSubmit={(e) => {
             e.preventDefault();
           }}
@@ -148,25 +147,27 @@ const Login = () => {
             </p>
           </>
           <>
-            <input
-              ref={password}
-              type={isShowpassword ? "password" : "text"}
-              placeholder="password"
-              className="w-full mt-4 px-4 py-3 rounded-md border-[1px] "
-            />
-            <p className="text-red-700 font-bold text-[12px] p-1">
-              {error?.passwordError}
-            </p>
+            <div className="relative ">
+              <input
+                ref={password}
+                type={isShowpassword ? "password" : "text"}
+                placeholder="password"
+                className="w-full mt-4 px-4 py-3 rounded-md border-[1px] "
+              />
+              <p className="text-red-700 font-bold text-[12px] p-1">
+                {error?.passwordError}
+              </p>
 
-            <div
-              className="absolute top-[105px] right-[20px] "
-              onClick={() => setIsShowpassword(!isShowpassword)}
-            >
-              {isShowpassword ? (
-                <FaRegEye className="w-[25px]" />
-              ) : (
-                <FaEyeSlash className="w-[25px]" />
-              )}
+              <div
+                className="absolute top-[32px] right-[20px] "
+                onClick={() => setIsShowpassword(!isShowpassword)}
+              >
+                {isShowpassword ? (
+                  <FaRegEye className="w-[25px]" />
+                ) : (
+                  <FaEyeSlash className="w-[25px]" />
+                )}
+              </div>
             </div>
           </>
           <button
