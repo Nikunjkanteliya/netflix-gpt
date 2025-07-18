@@ -89,9 +89,9 @@ body {
 }
 
 .slick-prev {
-  left: 25px !important;
+  left: 45px !important;
   z-index: 99;
-  width: 25px ;
+  width: 25px;
 }
 .slick-next {
   right: 25px !important;

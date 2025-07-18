@@ -2,7 +2,7 @@ const NextArrow = (props) => {
   const { className, style, onClick } = props;
   return (
     <div
-      className={` custom-arrow next`}
+      className={`${className} custom-arrow next`}
       style={{ ...style, display: "block" }}
       onClick={onClick}
     >
