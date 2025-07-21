@@ -27,12 +27,17 @@ const Cards = ({ posterPath, title, movieDesc, ids }) => {
   return (
     <>
       <div
-        className=" p-4  shadow-2xl  transform transition-transform duration-300 hover:-translate-y-2 hover:bg-"
+        className=" p-4    transform transition-transform duration-300 hover:-translate-y-2  "
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       >
-        <img src={CDN_IMG + posterPath} alt="posterPath" draggable={false} />
+        <img
+          src={CDN_IMG + posterPath}
+          alt="posterPath"
+          draggable={false}
+          className="shadow-[0_4px_15px_rgba(255,255,255,0.05)] "
+        />
       </div>
       <Modal
         isopen={isopen}

@@ -94,7 +94,7 @@ const Header = () => {
           )}
 
           <button
-            className="px-4 py-2 border border-white rounded-lg max-md:px-2 max-md:py-2 max-md:text-[14px]"
+            className="px-4 py-2 border border-white rounded-lg max-md:px-2 max-md:py-2 max-md:text-[14px] text-white"
             onClick={() => dispatch(toggleAibutton())}
           >
             {!aiToggle ? "Ask AI 🔎" : "Movies"}

@@ -21,7 +21,7 @@ const CrouselWrapper = ({ title, moviedata, onEndReached }) => {
   };
   return (
     <div className="mb-10">
-      <p className="px-4 pt-1 text-4xl">{title}</p>
+      <p className="px-4 pt-1 text-4xl text-white ">{title}</p>
       <div className="slider-container px-4">
         <Slider {...infiniteSettings}>
           {moviedata?.map((movieData) => (
