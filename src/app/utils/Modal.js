@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Popup from "reactjs-popup";
-import { CDN_IMG } from "./constants";
 import useModalvideos from "../hooks/useModalvideos";
 import { useSelector } from "react-redux";
 

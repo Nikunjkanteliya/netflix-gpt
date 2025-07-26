@@ -36,7 +36,7 @@ const Cards = ({ posterPath, title, movieDesc, ids }) => {
           src={CDN_IMG + posterPath}
           alt="posterPath"
           draggable={false}
-          className="shadow-[0_4px_15px_rgba(255,255,255,0.05)] "
+          className="shadow-[0_4px_15px_rgba(255,255,255,0.05)]"
         />
       </div>
       <Modal
