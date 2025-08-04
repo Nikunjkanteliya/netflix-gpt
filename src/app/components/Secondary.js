@@ -24,6 +24,7 @@ const Secondary = ({ moviData }) => {
   const upcomingMovieData = useSelector(
     (store) => store?.movieList?.upcomingMovie
   );
+  console.log(popularMoviesData);
   return (
     <div>
       <CrouselWrapper title={"Now Playing"} moviedata={moviData} />

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { logoutUser } from "../utils/Logout";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +21,9 @@ const Header = () => {
   const selectedlang = useSelector((store) => store.geminiAI.selectedLang);
 
   const dispatch = useDispatch();
+  const [isClient, setIsClient] = useState(false);
   useEffect(() => {
+    setIsClient(true);
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         router.push("/browse");
@@ -56,6 +58,7 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  if (!isClient) return null;
   // dispatch on click and useSelector for the same values
   return (
     <header className="mx-auto left-0 right-0 px-[48px] py-[24px] max-w-[calc(83.3333%-6rem)]  flex justify-between items-center max-xl:max-w-[100%]  max-md:py-[10px] max-md:px-[10px]">

@@ -27,6 +27,7 @@ const CrouselWrapper = ({ title, moviedata, onEndReached }) => {
           {moviedata?.map((movieData) => (
             <Cards
               ids={movieData?.id}
+              key={movieData?.id}
               posterPath={movieData?.poster_path}
               movieDesc={movieData?.overview}
               title={movieData?.title}
