@@ -150,7 +150,7 @@ const Login = () => {
             <div className="relative ">
               <input
                 ref={password}
-                type={isShowpassword ? "password" : "text"}
+                type={!isShowpassword ? "password" : "text"}
                 placeholder="password"
                 className="w-full mt-4 px-4 py-3 rounded-md border-[1px] "
               />
@@ -162,7 +162,7 @@ const Login = () => {
                 className="absolute top-[32px] right-[20px] "
                 onClick={() => setIsShowpassword(!isShowpassword)}
               >
-                {isShowpassword ? (
+                {!isShowpassword ? (
                   <FaRegEye className="w-[25px]" />
                 ) : (
                   <FaEyeSlash className="w-[25px]" />
